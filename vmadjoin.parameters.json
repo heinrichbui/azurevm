@@ -1,0 +1,74 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "vmSize": {
+        "value": "Standard_B2ms"
+      },
+      "existingVnetName": {
+        "value": "vnet-iacdevs-zanorth"
+      },
+      "exisingVnetRG":{
+        "value": "rg-iacdevs-zanorth"
+      },
+      "publicIPAddressName": {
+        "value": null
+      },
+      "existingSubnetName": {
+        "value": "snet-iacdevs-01"
+      },
+      "vmName": {
+        "value": "azvmlabappsrv"
+      },
+      "domainToJoin": {
+        "value": "qlabs.mibook.co.za"
+      },
+      "domainUsername": {
+        "reference": {
+          "keyVault": {
+            "id": "/subscriptions/a9267fa4-3879-4c56-bb74-a7d0d4549a13/resourceGroups/rg-avd-lab-zanorth/providers/Microsoft.KeyVault/vaults/kv-avd-lab-zanorth"
+          },
+          "secretName": "domainJoinAdmin"
+        }
+      },
+      "domainPassword": {
+        "reference": {
+          "keyVault": {
+            "id": "/subscriptions/a9267fa4-3879-4c56-bb74-a7d0d4549a13/resourceGroups/rg-avd-lab-zanorth/providers/Microsoft.KeyVault/vaults/kv-avd-lab-zanorth"
+          },
+          "secretName": "domainJoinPassword"
+        }
+      },
+      "ouPath": {
+        "value": "OU=Application Servers,OU=QLabs,DC=qlabs,DC=mibook,DC=co,DC=za"
+      },
+      "domainJoinOptions": {
+        "value": 3
+      },
+      "adminUsername": {
+        "reference": {
+          "keyVault": {
+            "id": "/subscriptions/a9267fa4-3879-4c56-bb74-a7d0d4549a13/resourceGroups/rg-avd-lab-zanorth/providers/Microsoft.KeyVault/vaults/kv-avd-lab-zanorth"
+          },
+          "secretName": "vmAdminUsername"
+        }
+      },
+      "adminPassword": {
+        "reference": {
+          "keyVault": {
+            "id": "/subscriptions/a9267fa4-3879-4c56-bb74-a7d0d4549a13/resourceGroups/rg-avd-lab-zanorth/providers/Microsoft.KeyVault/vaults/kv-avd-lab-zanorth"
+          },
+          "secretName": "vmAdminPassword"
+        }
+      },
+      "storageAccountName": {
+        "value": "[uniqueString(resourceGroup().id, deployment().name)]"
+      },
+      "location": {
+        "value": "southafricanorth"
+      },
+      "vmImageId":{
+        "value": "/subscriptions/a9267fa4-3879-4c56-bb74-a7d0d4549a13/resourceGroups/rg-iacdev-iaas-zanorth-01/providers/Microsoft.Compute/galleries/appservergallery01/images/win19appsrv"
+      }
+    }
+  }
